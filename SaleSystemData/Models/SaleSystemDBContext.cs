@@ -25,7 +25,7 @@ namespace SaleSystemData.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Server=localhost;Database=SaleSystemDB;Username=postgres;Password=password;");
+                optionsBuilder.UseSqlServer("Server=localhost;Database=SaleSystemDB;Trusted_Connection=True;");
             }
         }
 
@@ -35,13 +35,11 @@ namespace SaleSystemData.Models
 
             modelBuilder.Entity<Auth>(entity =>
             {
-                entity.Property(e => e.AuthId)
-                    .HasColumnName("authId")
-                    .UseNpgsqlIdentityAlwaysColumn();
+                entity.Property(e => e.AuthId).HasColumnName("authId");
 
                 entity.Property(e => e.Expiration)
                     .HasColumnName("expiration")
-                    .HasColumnType("timestamp with time zone");
+                    .HasColumnType("datetime");
 
                 entity.Property(e => e.Token).HasColumnName("token");
 
@@ -56,9 +54,7 @@ namespace SaleSystemData.Models
 
             modelBuilder.Entity<Order>(entity =>
             {
-                entity.Property(e => e.OrderId)
-                    .HasColumnName("orderId")
-                    .UseNpgsqlIdentityAlwaysColumn();
+                entity.Property(e => e.OrderId).HasColumnName("orderId");
 
                 entity.Property(e => e.ProductId).HasColumnName("productId");
 
@@ -81,38 +77,30 @@ namespace SaleSystemData.Models
 
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.Property(e => e.ProductId)
-                    .HasColumnName("productId")
-                    .UseNpgsqlIdentityAlwaysColumn();
+                entity.Property(e => e.ProductId).HasColumnName("productId");
 
                 entity.Property(e => e.Description).HasColumnName("description");
 
-                entity.Property(e => e.Price)
-                    .HasColumnName("price")
-                    .HasColumnType("numeric");
+                entity.Property(e => e.Price).HasColumnName("price");
 
                 entity.Property(e => e.ProductName)
                     .HasColumnName("productName")
-                    .HasMaxLength(100);
+                    .HasMaxLength(256);
 
                 entity.Property(e => e.Unit)
                     .HasColumnName("unit")
-                    .HasMaxLength(50);
+                    .HasMaxLength(256);
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userId")
-                    .UseNpgsqlIdentityAlwaysColumn();
+                entity.Property(e => e.UserId).HasColumnName("userId");
 
-                entity.Property(e => e.Password)
-                    .HasColumnName("password")
-                    .HasMaxLength(100);
+                entity.Property(e => e.Password).HasColumnName("password");
 
                 entity.Property(e => e.Username)
                     .HasColumnName("username")
-                    .HasMaxLength(50);
+                    .HasMaxLength(256);
             });
         }
     }

@@ -34,8 +34,8 @@ namespace SaleSystem
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Database configuration.
-            //services.AddDbContext<SaleSystemDBContext>(item => item.UseSqlServer(Configuration.GetConnectionString("SQLServer")));
-            services.AddDbContext<SaleSystemDBContext>(item => item.UseNpgsql(Configuration.GetConnectionString("PosgreSQL")));
+            services.AddDbContext<SaleSystemDBContext>(item => item.UseSqlServer(Configuration.GetConnectionString("SQLServer")));
+            //services.AddDbContext<SaleSystemDBContext>(item => item.UseNpgsql(Configuration.GetConnectionString("PosgreSQL")));
 
             // Repositories configuration.
             services.AddScoped<IAuthRepository, AuthRepository>();
