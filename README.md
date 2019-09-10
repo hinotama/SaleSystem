@@ -1,7 +1,7 @@
 # SaleSystem
 Global Design IT Internship Project in August 2019
 
-Note:
+Notes:
 - If you can't build the WPF project, try to uninstall the Newtonsoft.Json NuGet package then reinstall it again.
 - The SaleSystemDB.sql file contains queries to create a database for MS SQL Server.
 - The SaleSystemDB_PostgreSQL.sql file contains queries to create database for PostgreSQL.
